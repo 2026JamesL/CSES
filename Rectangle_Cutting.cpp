@@ -22,23 +22,17 @@ void dfs(int a, int b) {
         return;
     }
     for(int i = 1; i < a; ++i) {
-        if(dp[i][b] == 1000000000 && dp[a - i][b] == 1000000000) {
+        if(dp[i][b] == 1000000000) {
             dfs(i, b);
-            dfs(a - i, b);
-        } else if(dp[i][b] == 1000000000) {
-            dfs(i, b);
-        } else if(dp[a - i][b] == 1000000000) {
+        if(dp[a - i][b] == 1000000000) {
             dfs(a - i, b);
         }
         dp[a][b] = min(dp[a][b], 1 + dp[i][b] + dp[a - i][b]);
     }
     for(int i = 1; i < b; ++i) {
-        if(dp[a][i] == 1000000000 && dp[a][b - i] == 1000000000) {
+        if(dp[a][i] == 1000000000) {
             dfs(a, i);
-            dfs(a, b - i);
-        } else if(dp[a][i] == 1000000000) {
-            dfs(a, i);
-        } else if(dp[a][b - i] == 1000000000) {
+        if(dp[a][b - i] == 1000000000) {
             dfs(a, b - i);
         }
         dp[a][b] = min(dp[a][b], 1 + dp[a][i] + dp[a][b - i]);
